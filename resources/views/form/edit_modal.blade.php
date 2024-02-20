@@ -15,8 +15,9 @@
                                     {{-- <h5 class="card-title">Block styled form</h5> --}}
                 
                                     <!-- Block styled form -->
-                                    <form class="row g-3 justify-content-center" method="post">
+                                    <form class="row g-3 justify-content-center"id="edit-form" method="post">
                                         @csrf
+                                        @method('patch')
                                         <div class="col-md-6">
                                             <label for="_dm-inputFname" class="form-label">Nama Depan</label>
                                             <input id="first_name" type="text" placeholder="Nama Depan" required name="first_name" class="form-control">
@@ -24,17 +25,17 @@
                 
                                         <div class="col-md-6">
                                             <label for="_dm-inputLname" class="form-label">Nama Belakang</label>
-                                            <input id="_dm-inputLname" type="text" name="last_name" required placeholder="Nama Belakang" class="form-control">
+                                            <input id="last_name" type="text" name="last_name" required placeholder="Nama Belakang" class="form-control">
                                         </div>
                 
                                         <div class="col-12">
                                             <label for="_dm-inputUname" class="form-label">Username</label>
-                                            <input id="_dm-inputUname" type="username" name="username" required class="form-control" placeholder="Username">
+                                            <input id="username" type="username" name="username" required class="form-control" placeholder="Username">
                                         </div>
                 
                                         <div class="col-12">
                                             <label for="_dm-inputEmail" class="form-label">Email</label>
-                                            <input id="_dm-inputEmail" type="email" name="email" required class="form-control" placeholder="Email">
+                                            <input id="email" type="email" name="email" required class="form-control" placeholder="Email">
                                         </div>
                                         <div class="col-12">
                                             <label for="_dm-inputPass" class="form-label">Password</label>
@@ -54,10 +55,10 @@
                                 </div>
                                 <div class="d-flex justify-content-end p-3">
                                     <div>
-                                        <button type="reset" class="btn btn-danger">Reset</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="button" onclick="resetForm()" class="btn btn-danger">Reset</button>
+                                        <button type="submit" onclick="submitForm()" class="btn btn-primary">Save changes</button>
                                     </div>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,10 +68,20 @@
     </div>
 </div>
 <script>
+    function resetForm() {
+        document.getElementById("edit-form").reset();
+    }
+    function submitForm() {
+        
+        document.getElementById("edit-form").submit();
+    }
     $("#table").on("click", "td #btn-edit", function (){
         
         let data = $(this).data("data")
-        $("#form-edit").attr("action", "{{url('form-update')}}" + "/" + data.id)
+        $("#edit-form").attr("action", "{{url('form-update')}}" + "/" + data.id)
         $("#first_name").val(data.first_name)
+        $("#last_name").val(data.last_name)
+        $("#username").val(data.username)
+        $("#email").val(data.email)
     })
 </script>

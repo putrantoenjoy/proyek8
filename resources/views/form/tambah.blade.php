@@ -15,7 +15,7 @@
                                     {{-- <h5 class="card-title">Block styled form</h5> --}}
                 
                                     <!-- Block styled form -->
-                                    <form class="row g-3 justify-content-center" method="post" action="{{route('form-tambah')}}">
+                                    <form class="row g-3 justify-content-center" id="form-tambah" method="post" action="{{route('form-tambah')}}">
                                         @csrf
                                         <div class="col-md-6">
                                             <label for="_dm-inputFname" class="form-label">Nama Depan</label>
@@ -54,8 +54,8 @@
                                 </div>
                                 <div class="d-flex justify-content-end p-3">
                                     <div>
-                                        <button type="reset" class="btn btn-danger">Reset</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="reset" onclick="reset_tambah()" class="btn btn-danger">Reset</button>
+                                        <button type="submit" onclick="submit_tambah()" class="btn btn-primary">Save changes</button>
                                     </div>
                                   </div>
                             </div>
@@ -66,4 +66,8 @@
         </div>
     </div>
 </div>
-
+<script>
+    function submit_tambah() {
+        document.getElementById("form-tambah").submit();
+    }
+</script>

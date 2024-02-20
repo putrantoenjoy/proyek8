@@ -11,7 +11,7 @@ class FormController extends Controller
 {
     //
     public function index(){
-        $allData = DB::table('users')->where('deleted_at', null)->get();
+        $allData = DB::table('users')->where('deleted_at', null)->paginate(2);
         
         return view('form.index', compact('allData'));
     }
@@ -25,43 +25,42 @@ class FormController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('form-index');
-
-        // return User::create([
-        //     'first_name' => $data['first_name'],
-        //     'last_name' => $data['last_name'],
-        //     'username' => $data['username'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
+        return redirect()->route('form-index')->with('status', 'success tambah');
     }
     public function edit(Request $request, $id){
         $allData = User::find($id);
-        // $allData->first_name = $request->first_name;
-        // $allData->last_name = $request->last_name;
-        // $allData->username = $request->username;
-        // $allData->email = $request->email;
-        // $allData->password = Hash::make($request->password);
-        // $allData->save();
         
         return view('form.edit', compact('allData'));
     }
     public function update(Request $request, $id){
+        // dd($id);
         $request->validate([
             'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' =>['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        
 
-        $allData = User::find($id);
-        $allData->first_name = $request->first_name;
+        $allData = User::findOrFail($id);
+        
+        $data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+
+        ];
         $allData->first_name = $request->first_name;
         $allData->last_name = $request->last_name;
         $allData->username = $request->username;
         $allData->email = $request->email;
         $allData->password = Hash::make($request->password);
+        // dd($allData);
         
-        $allData->update();
+        $allData->update($data);
         
         return redirect()->route('form-index')->with('status', 'success update');
     }

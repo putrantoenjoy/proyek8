@@ -29,6 +29,12 @@
                     {{ session('status') }}
                 </div>
             @endif
+            @if($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>Error!</strong> {!! implode('', $errors->all('<div>:message</div>')) !!}
+            </div>
+                
+            @endif
 
             <div class="card">
                 <div class="card-header">
@@ -123,7 +129,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav class="text-align-center mt-5" aria-label="Table navigation">
+                    {{-- <nav class="text-align-center mt-5" aria-label="Table navigation">
                         <ul class="pagination justify-content-center">
                             <li class="page-item disabled">
                                 <a class="page-link" href="#">Previous</a>
@@ -139,7 +145,8 @@
                                 <a class="page-link" href="#">Next</a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> --}}
+                    {{$allData->links()}}
                 </div>
             </div>
             <!-- END : Table with toolbar -->
