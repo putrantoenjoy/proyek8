@@ -63,17 +63,12 @@
                                     </label>
                                 </div>
 
-                                <div class="d-grid mt-5">
+                                <div class="d-grid mt-3">
                                     <button class="btn btn-primary btn-lg" type="submit">Sign In</button>
                                 </div>
                             </form>
 
-                            <div class="d-flex justify-content-between mt-4">
-                                <a href="../password-reminder/index.html" class="btn-link text-decoration-none">Forgot password ?</a>
-                                <a href="{{route('register')}}" class="btn-link text-decoration-none">Create a new account</a>
-                            </div>
-
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3 mt-3">
+                            {{-- <div class="d-flex align-items-center justify-content-between border-top pt-3 mt-3">
                                 <h5 class="m-0">Login with</h5>
 
                                 <!-- Social media buttons -->
@@ -93,21 +88,21 @@
                                 </div>
                                 <!-- END : Social media buttons -->
 
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
                     <!-- END : Login card -->
 
                     <!-- Show the background images container -->
-                    <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
+                    {{-- <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
                         <button class="btn btn-danger hstack gap-2" data-bs-toggle="offcanvas" data-bs-target="#_dm-boxedBgContent">
                             <i class=" demo-psi-photos fs-4"></i>
                             <span class="vr"></span>
                             Background image
                         </button>
                         <button class="btn btn-light" onclick="window.history.back()">Back</button>
-                    </div>
+                    </div> --}}
                     <!-- END : Show the background images container -->
 
                 </div>

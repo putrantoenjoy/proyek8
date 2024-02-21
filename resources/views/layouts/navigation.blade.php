@@ -440,12 +440,12 @@
                 <!-- Navigation Category -->
                 <div class="mainnav__categoriy py-3">
                     <h6 class="mainnav__caption mt-0 px-3 fw-bold">Navigation</h6>
-                    <ul class="mainnav__menu nav flex-column">
+                    <ul class="mainnav__menu nav flex-column" id="myMenu">
 
                         <!-- Link with submenu -->
                         <li class="nav-item">
 
-                            <a href="{{route('home')}}" class="mininav-toggle nav-link"><i class="demo-pli-home fs-5 me-2"></i>
+                            <a href="{{route('home')}}" class="mininav-toggle nav-link" id="menuDashboard"><i class="demo-pli-home fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Dashboard</span>
                             </a>
 
@@ -456,8 +456,30 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="{{route('form-index')}}" class="mininav-toggle nav-link"><i class="bi bi-person fs-5 me-2"></i>
+                            <a href="{{route('form-index')}}" class="mininav-toggle nav-link" id="menuUser"><i class="bi bi-person fs-5 me-2"></i>
                                 <span class="nav-label ms-1">User</span>
+                            </a>
+
+                            <!-- Dashboard submenu list -->
+                            
+                            <!-- END : Dashboard submenu list -->
+
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="#kategoriproduk" class="mininav-toggle nav-link" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>
+                                <span class="nav-label ms-1">Kategori Produk</span>
+                            </a>
+
+                            <!-- Dashboard submenu list -->
+                            
+                            <!-- END : Dashboard submenu list -->
+
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="#satuanproduk" class="mininav-toggle nav-link" id="menuSatuan"><i class="bi bi-clipboard fs-5 me-2"></i>
+                                <span class="nav-label ms-1">Satuan Produk</span>
                             </a>
 
                             <!-- Dashboard submenu list -->
@@ -1316,5 +1338,6 @@
 
         </div>
     </aside>
+    
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- END - SIDEBAR -->

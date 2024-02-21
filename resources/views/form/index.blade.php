@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 <section id="content" class="content">
     <div class="content__header content__boxed overlapping">
@@ -166,6 +165,7 @@
     <!-- END - FOOTER -->
 
 </section>
+
 {{-- <script>
     var delayInMilliseconds = 5000; //1 second
     var x = document.getElementById("success");
@@ -175,4 +175,5 @@
     console.log("success");
     }, delayInMilliseconds);
 </script> --}}
+
 @endsection
