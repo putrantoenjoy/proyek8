@@ -18,9 +18,10 @@ class DatabaseSeeder extends Seeder
     {
         $users = [];
         $faker = Faker\Factory::create();
-        for($i=0;$i<2;$i++){
+        for($i=0;$i<15;$i++){
         $data[$i] = [
-                'name' => $faker->name,
+                'first_name' => $faker->name,
+                'last_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'username' => $faker->unique()->userName,
                 'email_verified_at' => now(),

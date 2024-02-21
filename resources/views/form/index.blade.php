@@ -58,26 +58,14 @@
 
                         <!-- Right Toolbar -->
                         <div class="col-md-6 d-flex gap-1 align-items-center justify-content-md-end mb-3">
-                            <div class="form-group">
-                                <input type="text" placeholder="Search..." class="form-control" autocomplete="off">
-                            </div>
-                            <div class="btn-group">
-                                <button class="btn btn-icon btn-outline-light" aria-label="Download"><i class="demo-pli-download-from-cloud fs-5"></i></button>
-                                <div class="btn-group dropdown">
-                                    <button class="btn btn-icon btn-outline-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="visually-hidden">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                    </ul>
+                            <form action="" method="get" class="d-flex gap-2">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="{{$cari}}">
                                 </div>
-                            </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-icon btn-outline-light"><i class="bi bi-search"></i></button>
+                                </div>
+                            </form>
                         </div>
                         <!-- END : Right Toolbar -->
 
@@ -100,7 +88,7 @@
                             <tbody>
                                 @foreach ($allData as $row => $data)
                                 <tr>
-                                    <td>{{++$row}}</td>
+                                    <td>{{$loop->iteration}}</td>
                                     <td>{{$data->first_name}}</td>
                                     <td>{{$data->last_name}}</td>
                                     <td>{{$data->username}}</td>
@@ -146,7 +134,7 @@
                             </li>
                         </ul>
                     </nav> --}}
-                    {{$allData->links()}}
+                    {{$allData->onEachSide(2)->links()}}
                 </div>
             </div>
             <!-- END : Table with toolbar -->

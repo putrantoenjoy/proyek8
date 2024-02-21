@@ -10,13 +10,31 @@ use App\Models\User;
 class FormController extends Controller
 {
     //
-    public function index(){
-        $allData = DB::table('users')->where('deleted_at', null)->paginate(2);
+    public function index(Request $request){
+        $cari = $request->cari;
+        $data = DB::table('users')->where('deleted_at', null);
+        if(!empty ($request->cari)){
+            $data->where('first_name', 'like', "%". $cari ."%")->orWhere('last_name', 'like', "%". $cari ."%");
+        }
+        $allData = $data->paginate(5);
+        return view('form.index', compact('allData', 'cari'));
+    }
+    public function search(Request $request){
+        // $cari = $request->cari;
+        // $allData = DB::table('users')->where('first_name', 'like', "%". $cari ."%")->orWhere('last_name', 'like', "%". $cari ."%")->paginate(5);
         
-        return view('form.index', compact('allData'));
+        
+        // return view('form.index', compact('allData', 'cari'));
     }
     public function tambah(Request $request){
-        
+        $request->validate([
+            'username' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' =>['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -39,7 +57,6 @@ class FormController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' =>['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         
 
@@ -50,9 +67,11 @@ class FormController extends Controller
             'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
 
         ];
+        if(!empty ($request->password)){
+            $data["password"] = Hash::make($request->password);
+        }
         $allData->first_name = $request->first_name;
         $allData->last_name = $request->last_name;
         $allData->username = $request->username;
