@@ -77,21 +77,19 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Depan</th>
-                                    <th>Nama Belakang</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
+                                    <th>Kode Kategori</th>
+                                    <th>Nama</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($allData as $row => $data)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ ++$row }}</td>
+                                    <td>{{ $data->kode_kategori }}</td>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->status }}</td>
                                     <td>
                                         <div class="d-flex">
                                             

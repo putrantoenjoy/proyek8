@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Produk;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kategori_produk;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -16,6 +17,8 @@ class KategoriController extends Controller
         if(!empty($allData)){            
             $nama = "KP001";
         }
+        $nama = Kategori_produk::orderBy('id', 'DESC')->first()->kode_kategori;
+        $nama++;
         return view('kategori_produk.index', compact('allData', 'nama'));
     }
     public function tambah(Request $request)
@@ -24,12 +27,10 @@ class KategoriController extends Controller
         if(!empty($allData)){            
             $nama = "KP001";
         }
-        $user = User::orderBy('id', 'DESC')->first();
-        $nama = User::
         $allData->kode_kategori = $nama;
         $allData->nama = $request->nama;
         $allData->status = $request->status;
-        dd($allData);
+        $allData->save();
         return back();
     }
     public function update(Request $request, $id)
