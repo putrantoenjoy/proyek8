@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('produk')->group(function () {
+    Route::get('/', [App\Http\Controllers\Produk\KategoriController::class, 'index'])->name('kategori-index');
+    Route::post('/tambah', [App\Http\Controllers\Produk\KategoriController::class, 'tambah'])->name('kategori-tambah');
+    Route::put('/kategori-update/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'update'])->name('kategori-update');
+});
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/form', [App\Http\Controllers\FormController::class, 'index'])->name('form-index');

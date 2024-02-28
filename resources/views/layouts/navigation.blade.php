@@ -467,7 +467,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="#kategoriproduk" class="mininav-toggle nav-link" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>
+                            <a href="{{ route('kategori-index') }}" class="mininav-toggle nav-link" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Kategori Produk</span>
                             </a>
 
