@@ -10,12 +10,12 @@ class Kategori_produk extends Model
     use HasFactory;
     protected $guarded = [];
  
-    protected static function boot(){
-        parent::boot();
+    // protected static function boot(){
+    //     parent::boot();
     
-        static::created(function ($model) {
-        $model->kode_kategori = "KP00" . $model->id;
-        $model->save();
-        });
-    }
+    //     static::created(function ($model) {
+    //     $model->kode_kategori = "KP00" . $model->id;
+    //     $model->save();
+    //     });
+    // }
 }

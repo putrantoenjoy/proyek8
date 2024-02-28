@@ -19,7 +19,7 @@
                                         @csrf
                                         <div class="col-md-12">
                                             <label for="_dm-inputFname" class="form-label">Kode Kategori</label>
-                                            <input id="_dm-inputFname" type="text" value="{{ $nama }}" name="kode_kategori" required class="form-control" disabled>
+                                            <input id="_dm-inputFname" type="text" value="{{ $kode }}" name="kode_kategori" required class="form-control" disabled>
                                         </div>
                 
                                         <div class="col-md-12">

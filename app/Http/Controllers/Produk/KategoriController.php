@@ -14,20 +14,24 @@ class KategoriController extends Controller
     public function index()
     {
         $allData = Kategori_produk::get();
-        if(!empty($allData)){            
-            $nama = "KP001";
-        }
-        $nama = Kategori_produk::orderBy('id', 'DESC')->first()->kode_kategori;
-        $nama++;
-        return view('kategori_produk.index', compact('allData', 'nama'));
+        // if(!empty($allData)){            
+        //     $nama = "KP001";
+        // }
+        $total_kategori = Kategori_produk::count();
+        $kode  = "KP". sprintf("%04d", $total_kategori + 1);
+        // $nama = Kategori_produk::orderBy('id', 'DESC')->first()->kode_kategori;
+        // $nama++;
+        return view('kategori_produk.index', compact('allData', 'kode'));
     }
     public function tambah(Request $request)
     {
         $allData = new Kategori_produk();
-        if(!empty($allData)){            
-            $nama = "KP001";
-        }
-        $allData->kode_kategori = $nama;
+        // if(!empty($allData)){            
+        //     $nama = "KP001";
+        // }
+        $total_kategori = Kategori_produk::count();
+        $kode  = "KP". sprintf("%04d", $total_kategori + 1);
+        $allData->kode_kategori = $kode;
         $allData->nama = $request->nama;
         $allData->status = $request->status;
         $allData->save();
