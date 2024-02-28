@@ -478,7 +478,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="#satuanproduk" class="mininav-toggle nav-link" id="menuSatuan"><i class="bi bi-clipboard fs-5 me-2"></i>
+                            <a href="{{ route('satuan-index') }}" class="mininav-toggle nav-link" id="menuSatuan"><i class="bi bi-clipboard fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Satuan Produk</span>
                             </a>
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class satuan_produk extends Model
+class Satuan_produk extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -14,7 +14,7 @@ class satuan_produk extends Model
         parent::boot();
     
         static::created(function ($model) {
-        $model->id = "SP00" . $model->id;
+        $model->kode_nama = "SB00" . $model->id;
         $model->save();
         });
     }

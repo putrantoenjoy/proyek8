@@ -8,12 +8,12 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">User</li>
+                    <li class="breadcrumb-item active" aria-current="page">Satuan Barang</li>
                 </ol>
             </nav>
 
             <p class="lead">
-                <h1>Halaman User</h1>
+                <h1>Halaman Satuan Barang</h1>
             </p>
 
         </div>
@@ -37,7 +37,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-3">Tabel User</h5>
+                    <h5 class="card-title mb-3">Tabel Satuan Barang</h5>
                     <div class="row">
 
                         <!-- Left toolbar -->
@@ -47,7 +47,7 @@
                             <button type="button" class="btn btn-primary hstack gap-2 align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="demo-psi-add fs-5"></i>
                                 <span class="vr"></span>
-                                Tambah User
+                                Tambah Satuan Barang
                             </button>
                             
                             
@@ -59,7 +59,7 @@
                         <div class="col-md-6 d-flex gap-1 align-items-center justify-content-md-end mb-3">
                             <form action="" method="get" class="d-flex gap-2">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="{{$cari}}">
+                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="">
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn btn-icon btn-outline-light"><i class="bi bi-search"></i></button>
@@ -77,44 +77,30 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Depan</th>
-                                    <th>Nama Belakang</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
+                                    <th>Kode Nama</th>
+                                    <th>Nama</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($allData as $row => $data)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$data->first_name}}</td>
-                                    <td>{{$data->last_name}}</td>
-                                    <td>{{$data->username}}</td>
-                                    <td>{{$data->email}}</td>
+                                    <td>{{ ++$row }}</td>
+                                    <td>{{ $data->kode_nama }}</td>
+                                    <td>{{ $data->nama }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            @if($data->deleted_at == null)
-                                            <form action="{{route('form-delete', $data->id)}}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                
-                                                <button class="btn btn-primary" type="button" id="btn-edit" data-data='{{json_encode($data)}}' data-bs-toggle="modal" data-bs-target="#ModalEdit"><i class="bi bi-pencil fs-5"></i></button>
-                                                {{-- <a href="{{route('form-edit', $data->id)}}" class="btn btn-primary" type="button"><i class="bi bi-pencil fs-5"></i></a> --}}
-                                                <button class="btn btn-danger" type="submit"><i class="bi bi-trash fs-5"></i></button>
-                                            </form>
-                                            @else
                                             <form action="" method="post">
                                                 @csrf
-                                                <button class="btn btn-danger disabled" type="button">Deleted</button>
+                                                <button class="btn btn-danger" type="button">Delete</button>
                                             </form>
-                                            @endif
                                         </div>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        
                     </div>
                     {{-- <nav class="text-align-center mt-5" aria-label="Table navigation">
                         <ul class="pagination justify-content-center">
@@ -133,9 +119,10 @@
                             </li>
                         </ul>
                     </nav> --}}
-                    {{$allData->onEachSide(2)->links()}}
+                    
                 </div>
             </div>
+            
             <!-- END : Table with toolbar -->
 
         </div>
@@ -150,8 +137,8 @@
         <button class="btn btn-icon btn-outline-light" aria-label="Remove"><i class="demo-pli-recycling fs-5"></i></button>
     </div> --}}
     <!-- FOOTER -->
-    @include('form.tambah')
-    @include('form.edit_modal')
+    @include('satuan_barang.tambah')
+    {{-- @include('form.edit_modal') --}}
     <footer class="content__boxed mt-auto">
         <div class="content__wrap py-3 py-md-1 d-flex flex-column flex-md-row align-items-md-center">
             <div class="text-nowrap mb-4 mb-md-0">Copyright &copy; 2022 <a href="#" class="ms-1 btn-link fw-bold">My Company</a></div>

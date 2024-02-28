@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -17,12 +17,12 @@
                                     <!-- Block styled form -->
                                     <form class="row g-3 justify-content-center" id="form-tambah" method="post" action="{{route('kategori-tambah')}}">
                                         @csrf
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="_dm-inputFname" class="form-label">Kode Kategori</label>
                                             <input id="_dm-inputFname" type="text" value="{{ $nama }}" name="kode_kategori" required class="form-control" disabled>
                                         </div>
                 
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label for="_dm-inputLname" class="form-label">Nama</label>
                                             <input id="_dm-inputLname" type="text" name="nama" required placeholder="Nama" class="form-control">
                                         </div>
@@ -31,25 +31,7 @@
                                             <label for="_dm-inputUname" class="form-label">Status</label>
                                             <input id="_dm-inputUname" type="text" name="status" required class="form-control" placeholder="Status">
                                         </div>
-                
-                                        {{-- <div class="col-12">
-                                            <label for="_dm-inputEmail" class="form-label">Email</label>
-                                            <input id="_dm-inputEmail" type="email" name="email" required class="form-control" placeholder="Email">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="_dm-inputPass" class="form-label">Password</label>
-                                            <input id="_dm-inputPass" type="password" name="password" required class="form-control" placeholder="*****">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="_dm-inputConfirmPass" class="form-label">Konfirmasi Password</label>
-                                            <input id="_dm-inputConfirmPass" type="password" required name="password_confirmation" class="form-control" placeholder="">
-                                        </div> --}}
-                
-                                        {{-- <div class="col-12 row justify-content-center p-2 my-3">
-                                            <button type="submit" class="btn btn-primary">Buat Akun</button>
-                                        </div> --}}
                                     </form>
-                                    <!-- END : Block styled form -->
                 
                                 </div>
                                 <div class="d-flex justify-content-end p-3">

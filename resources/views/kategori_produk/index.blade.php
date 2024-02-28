@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">User</li>
+                    <li class="breadcrumb-item active" aria-current="page">Kategori</li>
                 </ol>
             </nav>
 
@@ -37,7 +37,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-3">Tabel User</h5>
+                    <h5 class="card-title mb-3">Tabel Kategori</h5>
                     <div class="row">
 
                         <!-- Left toolbar -->
@@ -47,7 +47,7 @@
                             <button type="button" class="btn btn-primary hstack gap-2 align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="demo-psi-add fs-5"></i>
                                 <span class="vr"></span>
-                                Tambah User
+                                Tambah Kategori
                             </button>
                             
                             
@@ -95,7 +95,7 @@
                                             
                                             <form action="" method="post">
                                                 @csrf
-                                                <button class="btn btn-danger disabled" type="button">Deleted</button>
+                                                <button class="btn btn-danger" type="button">Delete</button>
                                             </form>
                                         </div>
                                     </td>
