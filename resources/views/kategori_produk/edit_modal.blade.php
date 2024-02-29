@@ -27,10 +27,10 @@
                                             <label for="_dm-inputLname" class="form-label">Nama</label>
                                             <input id="nama" type="text" name="nama" required placeholder="Nama" class="form-control">
                                         </div>
-                                        <div class="col-md-12">
+                                        {{-- <div class="col-md-12">
                                             <label for="_dm-inputLname" class="form-label">Status</label>
                                             <input id="status" type="text" name="status" required placeholder="Status" class="form-control">
-                                        </div>
+                                        </div> --}}
                                     </form>
                                     <!-- END : Block styled form -->
                 
@@ -60,51 +60,9 @@
     $("#table").on("click", "td #btn-edit", function (){
         
         let data = $(this).data("data")
-        let tes = $("#kategori-form").attr("action", "{{route('kategori-update',  ':data' )}}".replace(':data', data.id))
-
-        // console.log(tes)
-        // $('#kategori-form').on('submit', function(event) {
-        //     console.log(event)
-        //     event.preventDefault(); // Mencegah form untuk melakukan submit biasa
-        //     var formData = $(this).serialize();
-        //     var id = $(this).data('id'); // Ambil ID data dari atribut data-id
-        //     $.ajax({
-        //         url: "{{ route('kategori-update', ':id') }}".replace(':id', id),
-        //         method: 'PUT',
-        //         data: formData,
-        //         success: function(data) {
-        //             console.log('Data berhasil diupdate:', data);
-        //             // Handle response di sini jika diperlukan
-        //         },
-        //         error: function(error) {
-        //             console.error('Ada kesalahan:', error);
-        //             // Handle error di sini jika diperlukan
-        //         }
-        //     });
-        // });
+        $("#kategori-form").attr("action", "{{route('kategori-update',  ':data' )}}".replace(':data', data.id))
         $("#kode_kategori").val(data.kode_kategori)
         $("#nama").val(data.nama)
-        $("#status").val(data.status)
+        // $("#status").val(data.status)
     })
-    // $(document).ready(function() {
-    //     $('#kategori-form').on('submit', function(event) {
-    //         console.log(event)
-    //         event.preventDefault(); // Mencegah form untuk melakukan submit biasa
-    //         var formData = $(this).serialize();
-    //         var id = $(this).data('id'); // Ambil ID data dari atribut data-id
-    //         $.ajax({
-    //             url: "{{ route('kategori-update', ':id') }}".replace(':id', id),
-    //             method: 'PUT',
-    //             data: formData,
-    //             success: function(data) {
-    //                 console.log('Data berhasil diupdate:', data);
-    //                 // Handle response di sini jika diperlukan
-    //             },
-    //             error: function(error) {
-    //                 console.error('Ada kesalahan:', error);
-    //                 // Handle error di sini jika diperlukan
-    //             }
-    //         });
-    //     });
-    // });
 </script>

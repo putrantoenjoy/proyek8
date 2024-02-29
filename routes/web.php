@@ -24,11 +24,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [App\Http\Controllers\Produk\KategoriController::class, 'index'])->name('kategori-index');
         Route::post('/tambah', [App\Http\Controllers\Produk\KategoriController::class, 'tambah'])->name('kategori-tambah');
         Route::put('/kategori-update/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'update'])->name('kategori-update');
+        Route::delete('/kategori-delete/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'destroy'])->name('kategori-delete');
     });
     Route::prefix('satuan')->group(function () {
         Route::get('/', [App\Http\Controllers\Produk\SatuanController::class, 'index'])->name('satuan-index');
         Route::post('/tambah', [App\Http\Controllers\Produk\SatuanController::class, 'tambah'])->name('satuan-tambah');
         Route::put('/satuan-update/{id}', [App\Http\Controllers\Produk\SatuanController::class, 'update'])->name('satuan-update');
+        Route::delete('/satuan-delete/{id}', [App\Http\Controllers\Produk\SatuanController::class, 'destroy'])->name('satuan-delete');
     });
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/form', [App\Http\Controllers\FormController::class, 'index'])->name('form-index');

@@ -27,10 +27,10 @@
                                             <input id="_dm-inputLname" type="text" name="nama" required placeholder="Nama" class="form-control">
                                         </div>
                 
-                                        <div class="col-12">
+                                        {{-- <div class="col-12">
                                             <label for="_dm-inputUname" class="form-label">Status</label>
                                             <input id="_dm-inputUname" type="text" name="status" required class="form-control" placeholder="Status">
-                                        </div>
+                                        </div> --}}
                                     </form>
                 
                                 </div>

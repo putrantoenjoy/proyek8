@@ -34,6 +34,16 @@ class SatuanController extends Controller
     }
     public function update(Request $request, $id)
     {
-        return view('');
+        $data = Satuan_produk::findOrFail($id);
+        $data->kode_nama = Satuan_produk::findOrFail($id)->kode_nama;
+        $data->nama = $request->nama;
+        $data->update();
+        return back();
+    }
+    public function destroy($id)
+    {
+        $data = Satuan_produk::findOrFail($id);
+        $data->delete();
+        return back();
     }
 }

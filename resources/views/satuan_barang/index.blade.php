@@ -90,9 +90,11 @@
                                     <td>{{ $data->nama }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <form action="" method="post">
+                                            <form action="{{ route('satuan-delete', $data->id) }}" method="post">
                                                 @csrf
-                                                <button class="btn btn-danger" type="button">Delete</button>
+                                                @method('delete')
+                                                <button class="btn btn-primary" type="button" id="btn-edit" data-data='{{json_encode($data)}}' data-bs-toggle="modal" data-bs-target="#ModalEdit"><i class="bi bi-pencil fs-5"></i></button>
+                                                <button class="btn btn-danger" type="submit">Delete</button>
                                             </form>
                                         </div>
                                     </td>
