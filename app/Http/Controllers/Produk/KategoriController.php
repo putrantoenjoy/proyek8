@@ -39,6 +39,9 @@ class KategoriController extends Controller
     }
     public function update(Request $request, $id)
     {
-        return view('');
+        $data = Kategori_produk::findOrFail($id);
+        dd($request->all());
+        $data->update();
+        return back();
     }
 }

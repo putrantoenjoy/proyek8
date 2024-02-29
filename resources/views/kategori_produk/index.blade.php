@@ -95,7 +95,8 @@
                                             
                                             <form action="" method="post">
                                                 @csrf
-                                                <button class="btn btn-danger" type="button">Delete</button>
+                                                <button class="btn btn-primary" type="button" id="btn-edit" data-data='{{json_encode($data)}}' data-bs-toggle="modal" data-bs-target="#ModalEdit"><i class="bi bi-pencil fs-5"></i></button>
+                                                <button class="btn btn-danger" type="button"><i class="bi bi-trash fs-5"></i></button>
                                             </form>
                                         </div>
                                     </td>
@@ -139,7 +140,7 @@
     </div> --}}
     <!-- FOOTER -->
     @include('kategori_produk.tambah')
-    @include('form.edit_modal')
+    @include('kategori_produk.edit_modal')
     <footer class="content__boxed mt-auto">
         <div class="content__wrap py-3 py-md-1 d-flex flex-column flex-md-row align-items-md-center">
             <div class="text-nowrap mb-4 mb-md-0">Copyright &copy; 2022 <a href="#" class="ms-1 btn-link fw-bold">My Company</a></div>
