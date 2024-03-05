@@ -730,12 +730,12 @@
     <script src="{{url('assets/js/bootstrap.min.bdf649e4bf3fa0261445f7c2ed3517c3f300c9bb44cb991c504bdc130a6ead19.js')}}" defer></script>
     <script src="{{url('assets/js/nifty.min.b53472f123acc27ffd0c586e4ca3dc5d83c0670a3a5e120f766f88a92240f57b.js')}}" defer></script>
     <script>
-        document.querySelectorAll(".nav-link").forEach((link) => {
-            if (link.href === window.location.href) {
-                link.classList.add("active");
-                link.setAttribute("aria-current", "page");
-            }
-        });
+        // document.querySelectorAll(".nav-link").forEach((link) => {
+        //     if (link.href === window.location.href) {
+        //         link.classList.add("active");
+        //         link.setAttribute("aria-current", "page");
+        //     }
+        // });
         // var header = document.getElementById("myMenu");
 
         // var btns = header.getElementsByClassName("btn");

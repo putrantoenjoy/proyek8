@@ -467,7 +467,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="{{ route('kategori-index') }}" class="mininav-toggle nav-link" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>
+                            <a href="{{ route('kategori-index') }}" class="mininav-toggle nav-link {{ Route::is('kategori-index') ? 'active' : ''  }}" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Kategori Produk</span>
                             </a>
 
@@ -478,7 +478,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="{{ route('satuan-index') }}" class="mininav-toggle nav-link" id="menuSatuan"><i class="bi bi-clipboard fs-5 me-2"></i>
+                            <a href="{{ route('satuan-index') }}" class="mininav-toggle nav-link {{ Route::is('satuan-index') ? 'active' : ''  }}" id="menuSatuan"><i class="bi bi-clipboard fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Satuan Produk</span>
                             </a>
 

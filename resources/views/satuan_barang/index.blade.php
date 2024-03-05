@@ -94,7 +94,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-primary" type="button" id="btn-edit" data-data='{{json_encode($data)}}' data-bs-toggle="modal" data-bs-target="#ModalEdit"><i class="bi bi-pencil fs-5"></i></button>
-                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                                <button class="btn btn-danger" type="submit"><i class="bi bi-trash fs-5"></i></button>
                                             </form>
                                         </div>
                                     </td>

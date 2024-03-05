@@ -9,12 +9,19 @@ use Illuminate\Http\Request;
 class KategoriController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $allData = Kategori_produk::get();
+        $cari = $request->cari;
+        $data = Kategori_produk::where('deleted_at', null);
+        if(!empty ($request->cari)){
+            $data->where('nama', 'like', "%". $cari ."%");
+        }
+        $allData = $data->paginate(1);
+
+        // $allData = Kategori_produk::get();
         $total_kategori = Kategori_produk::count();
         $kode  = "KP". sprintf("%04d", $total_kategori + 1);
-        return view('kategori_produk.index', compact('allData', 'kode'));
+        return view('kategori_produk.index', compact('allData', 'kode', 'cari'));
     }
     public function tambah(Request $request)
     {
