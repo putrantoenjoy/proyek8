@@ -1,4 +1,8 @@
 <?php
+namespace Database\Seeders;
+use Faker;
+use DB;
+use Str;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -10,9 +14,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // echo "berhasil";
+        echo "Jumlah fake user:\n ";
+        $input = fopen("php://stdin","r");
+        $pilih = trim(fgets($input));
         $users = [];
         $faker = Faker\Factory::create();
-        for($i=0;$i<15;$i++){
+        for($i=0;$i<$pilih;$i++){
         $data[$i] = [
                 'first_name' => $faker->name,
                 'last_name' => $faker->name,
@@ -24,5 +32,6 @@ class UsersTableSeeder extends Seeder
             ];
         }
         DB::table('users')->insert($data);
+        echo "berhasil membuat ".$pilih." user\n\n";
     }
 }

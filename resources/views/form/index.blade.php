@@ -27,6 +27,10 @@
                 <div class="alert alert-success" id="success">
                     {{ session('status') }}
                 </div>
+            @elseif (session('delete'))
+                <div class="alert alert-danger" id="danger">
+                    {{ session('delete') }}
+                </div>
             @endif
             @if($errors->any())
             <div class="alert alert-danger alert-dismissible fade show">

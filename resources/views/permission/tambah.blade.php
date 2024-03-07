@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tambah Satuan Barang</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Permission</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -15,20 +15,21 @@
                                     {{-- <h5 class="card-title">Block styled form</h5> --}}
                 
                                     <!-- Block styled form -->
-                                    <form class="row g-3 justify-content-center" id="form-tambah" method="post" action="{{route('satuan-tambah')}}">
+                                    <form class="row g-3 justify-content-center" id="form-tambah" method="post" action="{{route('permission-tambah')}}">
                                         @csrf
                                         <div class="col-md-12">
-                                            <label for="_dm-inputFname" class="form-label">Kode Nama</label>
-                                            <input id="_dm-inputFname" type="text" value="{{ $kode }}" disabled class="form-control">
+                                            <label for="_dm-inputFname" class="form-label">Pilih Role</label>
+                                            <select name="" class="form-control" id="">
+                                            @foreach ($roles as $role)
+                                                <option selected hidden disabled>Pilih Role</option>
+                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                            </select>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="_dm-inputFname" class="form-label">Nama</label>
+                                            <label for="_dm-inputFname" class="form-label">Pilih Permission</label>
                                             <input id="_dm-inputFname" type="text" placeholder="Nama" required name="nama" class="form-control">
                                         </div>
-                
-                                        {{-- <div class="col-12 row justify-content-center p-2 my-3">
-                                            <button type="submit" class="btn btn-primary">Buat Akun</button>
-                                        </div> --}}
                                     </form>
                                     <!-- END : Block styled form -->
                 

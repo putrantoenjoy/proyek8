@@ -10,27 +10,28 @@ use Illuminate\Http\Request;
 class SatuanController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $allData = Satuan_produk::all();
-        $nama = "SB000";
-        if(empty($allData)){            
-            $nama = Satuan_produk::orderBy('id', 'DESC')->first()->kode_nama;
+        $cari = $request->cari;
+        $data = Satuan_produk::where('deleted_at', null);
+        if(!empty ($request->cari)){
+            $data->where('nama', 'like', "%". $cari ."%");
         }
-        $nama++;
-        return view('satuan_barang.index', compact('allData', 'nama'));
+        $allData = Satuan_produk::count();
+        $kode  = "SP". sprintf("%04d", $allData + 1);
+        $allData = $data->paginate(2);
+
+        return view('satuan_barang.index', compact('allData', 'cari', 'kode'));
     }
 
     public function tambah(Request $request)
     {
         $allData = new Satuan_produk();
-        if(!empty($allData)){            
-            $nama = "KP001";
-        }
-        $allData->kode_nama = $nama;
+        $kode  = "SP". sprintf("%04d", Satuan_produk::count() + 1);
+        $allData->kode_nama = $kode;
         $allData->nama = $request->nama;
         $allData->save();
-        return back();
+        return back()->with('status', 'satuan berhasil ditambah');
     }
     public function update(Request $request, $id)
     {
@@ -38,12 +39,12 @@ class SatuanController extends Controller
         $data->kode_nama = Satuan_produk::findOrFail($id)->kode_nama;
         $data->nama = $request->nama;
         $data->update();
-        return back();
+        return back()->with('status', 'satuan berhasil diupdate');
     }
     public function destroy($id)
     {
         $data = Satuan_produk::findOrFail($id);
         $data->delete();
-        return back();
+        return back()->with('delete', 'satuan berhasil dihapus');
     }
 }

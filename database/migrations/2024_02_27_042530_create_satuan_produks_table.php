@@ -17,8 +17,11 @@ class CreateSatuanProduksTable extends Migration
             $table->id();
             $table->string("kode_nama");
             $table->string("nama");
-            $table->softDeletes();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

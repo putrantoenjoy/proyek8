@@ -20,7 +20,7 @@
                                         @method('put')
                                         <div class="col-md-12">
                                             <label for="_dm-inputFname" class="form-label">Kode Kategori</label>
-                                            <input id="kode_nama" type="text" disabled required value="{{ $data->kode_nama }}" class="form-control">
+                                            <input id="kode_nama" type="text" disabled required value="{{ $kode }}" class="form-control">
                                         </div>
                 
                                         <div class="col-md-12">

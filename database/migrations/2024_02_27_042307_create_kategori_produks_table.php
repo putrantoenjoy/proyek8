@@ -17,8 +17,11 @@ class CreateKategoriProduksTable extends Migration
             $table->id();
             $table->string("kode_kategori");
             $table->string("nama");
-            $table->softDeletes();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
+            $table->bigInteger('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -31,7 +31,7 @@ class KategoriController extends Controller
         $allData->kode_kategori = $kode;
         $allData->nama = $request->nama;
         $allData->save();
-        return back();
+        return back()->with('status', 'satuan berhasil ditambah');
     }
     public function update(Request $request, $id)
     {
@@ -39,12 +39,12 @@ class KategoriController extends Controller
         $data->kode_kategori = Kategori_produk::findOrFail($id)->kode_kategori;
         $data->nama = $request->nama;
         $data->update();
-        return back();
+        return back()->with('status', 'satuan berhasil diupdate');
     }
     public function destroy($id)
     {
         $data = Kategori_produk::findOrFail($id);
         $data->delete();
-        return back();
+        return back()->with('delete', 'satuan berhasil dihapus');
     }
 }

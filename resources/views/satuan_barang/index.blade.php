@@ -24,9 +24,13 @@
 
             <!-- Table with toolbar -->
             @if (session('status'))
-                <div class="alert alert-success" id="success">
-                    {{ session('status') }}
-                </div>
+            <div class="alert alert-success" id="success">
+                {{ session('status') }}
+            </div>
+            @elseif (session('delete'))
+            <div class="alert alert-danger" id="danger">
+                {{ session('delete') }}
+            </div>
             @endif
             @if($errors->any())
             <div class="alert alert-danger alert-dismissible fade show">
@@ -59,7 +63,7 @@
                         <div class="col-md-6 d-flex gap-1 align-items-center justify-content-md-end mb-3">
                             <form action="" method="get" class="d-flex gap-2">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="">
+                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="{{ $cari }}">
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn btn-icon btn-outline-light"><i class="bi bi-search"></i></button>
@@ -102,7 +106,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+                        {{ $allData->links() }}
                     </div>
                     {{-- <nav class="text-align-center mt-5" aria-label="Table navigation">
                         <ul class="pagination justify-content-center">

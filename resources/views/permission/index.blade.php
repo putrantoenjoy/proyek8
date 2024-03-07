@@ -8,12 +8,12 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+                    <li class="breadcrumb-item active" aria-current="page">Permission</li>
                 </ol>
             </nav>
 
             <p class="lead">
-                <h1>Halaman Kategori</h1>
+                <h1>Halaman Permission</h1>
             </p>
 
         </div>
@@ -24,13 +24,13 @@
 
             <!-- Table with toolbar -->
             @if (session('status'))
-                <div class="alert alert-success" id="success">
-                    {{ session('status') }}
-                </div>
+            <div class="alert alert-success" id="success">
+                {{ session('status') }}
+            </div>
             @elseif (session('delete'))
-                <div class="alert alert-danger" id="danger">
-                    {{ session('delete') }}
-                </div>
+            <div class="alert alert-danger" id="danger">
+                {{ session('delete') }}
+            </div>
             @endif
             @if($errors->any())
             <div class="alert alert-danger alert-dismissible fade show">
@@ -41,7 +41,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-3">Tabel Kategori</h5>
+                    <h5 class="card-title mb-3">Tabel Permission</h5>
                     <div class="row">
 
                         <!-- Left toolbar -->
@@ -51,7 +51,7 @@
                             <button type="button" class="btn btn-primary hstack gap-2 align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="demo-psi-add fs-5"></i>
                                 <span class="vr"></span>
-                                Tambah Kategori
+                                Tambah Permission
                             </button>
                             
                             
@@ -63,7 +63,7 @@
                         <div class="col-md-6 d-flex gap-1 align-items-center justify-content-md-end mb-3">
                             <form action="" method="get" class="d-flex gap-2">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="{{ $cari }}">
+                                    <input type="text" placeholder="Search..." name="cari" class="form-control" autocomplete="off" value="">
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn btn-icon btn-outline-light"><i class="bi bi-search"></i></button>
@@ -81,72 +81,38 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Kategori</th>
                                     <th>Nama</th>
-                                    {{-- <th>Status</th> --}}
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($allData as $row => $data)
+                                @foreach ($permissions as $permission)
                                 <tr>
-                                    <td>{{ ++$row }}</td>
-                                    <td>{{ $data->kode_kategori }}</td>
-                                    <td>{{ $data->nama }}</td>
-                                    {{-- <td>{{ $data->status }}</td> --}}
+                                    <td>{{ $permission->id }}</td>
+                                    <td>{{ $permission->name }}</td>
                                     <td>
-                                        <div class="d-flex">
-                                            
-                                            <form action="{{ route('kategori-delete', $data->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-primary" type="button" id="btn-edit" data-data='{{json_encode($data)}}' data-bs-toggle="modal" data-bs-target="#ModalEdit"><i class="bi bi-pencil fs-5"></i></button>
-                                                <button class="btn btn-danger" type="submit"><i class="bi bi-trash fs-5"></i></button>
-                                            </form>
-                                        </div>
+                                        <form action="{{ route('permission-delete', $permission->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash fs-5"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $allData->links() }}
+                        {{-- {{ $allData->links() }} --}}
                     </div>
-                    {{-- <nav class="text-align-center mt-5" aria-label="Table navigation">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">Previous</a>
-                            </li>
-                            <li class="page-item active" aria-current="page">
-                                <span class="page-link">1</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav> --}}
-                    {{-- {{$allData->onEachSide(2)->links()}} --}}
+                    
                 </div>
             </div>
+            
             <!-- END : Table with toolbar -->
 
         </div>
     </div>
-    <!-- Modal -->
-    
-    {{-- <button class="btn btn-icon btn-outline-light" aria-label="Print table">
-        <i class="demo-pli-printer fs-5"></i>
-    </button>
-    <div class="btn-group">
-        <button class="btn btn-icon btn-outline-light" aria-label="Information"><i class="demo-pli-exclamation fs-5"></i></button>
-        <button class="btn btn-icon btn-outline-light" aria-label="Remove"><i class="demo-pli-recycling fs-5"></i></button>
-    </div> --}}
-    <!-- FOOTER -->
-    @include('kategori_produk.tambah')
-    @include('kategori_produk.edit_modal')
+    @include('permission.tambah')
+    {{-- @include('satuan_barang.edit_modal') --}}
     <footer class="content__boxed mt-auto">
         <div class="content__wrap py-3 py-md-1 d-flex flex-column flex-md-row align-items-md-center">
             <div class="text-nowrap mb-4 mb-md-0">Copyright &copy; 2022 <a href="#" class="ms-1 btn-link fw-bold">My Company</a></div>
@@ -160,15 +126,5 @@
     <!-- END - FOOTER -->
 
 </section>
-
-{{-- <script>
-    var delayInMilliseconds = 5000; //1 second
-    var x = document.getElementById("success");
-    setTimeout(function() {
-        // const element = document.getElementById("demo");
-        x.remove();
-    console.log("success");
-    }, delayInMilliseconds);
-</script> --}}
 
 @endsection

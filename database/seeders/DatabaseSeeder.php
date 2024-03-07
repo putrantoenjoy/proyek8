@@ -16,19 +16,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $users = [];
-        $faker = Faker\Factory::create();
-        for($i=0;$i<15;$i++){
-        $data[$i] = [
-                'first_name' => $faker->name,
-                'last_name' => $faker->name,
-                'email' => $faker->unique()->safeEmail,
-                'username' => $faker->unique()->userName,
-                'email_verified_at' => now(),
-                'password' => bcrypt('password'),
-                'remember_token' => Str::random(10),
-            ];
+        echo "1: User\n2: Role\nPilih ";
+        $input = fopen("php://stdin","r");
+        $pilih = trim(fgets($input));
+        echo "\n";
+        if($pilih == 1){
+            $this->call(UsersTableSeeder::class);
+        }else if($pilih == 2){
+            echo "1: Auto Create\n2: Manual Create\nPilih ";
+            $input = fopen("php://stdin","r");
+            $pilih = trim(fgets($input));
+            
+            if($pilih == 1){
+                $this->call(RoleSeeder::class);
+            }elseif($pilih == 2){
+                $this->call(RoleCreateSeeder::class);
+            }else{
+                return;
+            }
+        }else{
+            echo "pilih yang sesuai!\n";
+            $this->call(DatabaseSeeder::class);
         }
-        DB::table('users')->insert($data);
     }
 }

@@ -445,7 +445,7 @@
                         <!-- Link with submenu -->
                         <li class="nav-item">
 
-                            <a href="{{route('home')}}" class="mininav-toggle nav-link" id="menuDashboard"><i class="demo-pli-home fs-5 me-2"></i>
+                            <a href="{{route('home')}}" class="mininav-toggle nav-link {{ Route::is('home') ? 'active' : ''  }}" id="menuDashboard"><i class="demo-pli-home fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Dashboard</span>
                             </a>
 
@@ -456,7 +456,7 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="{{route('form-index')}}" class="mininav-toggle nav-link" id="menuUser"><i class="bi bi-person fs-5 me-2"></i>
+                            <a href="{{route('form-index')}}" class="mininav-toggle nav-link {{ Route::is('form-index') ? 'active' : ''  }}" id="menuUser"><i class="bi bi-person fs-5 me-2"></i>
                                 <span class="nav-label ms-1">User</span>
                             </a>
 
@@ -480,6 +480,28 @@
 
                             <a href="{{ route('satuan-index') }}" class="mininav-toggle nav-link {{ Route::is('satuan-index') ? 'active' : ''  }}" id="menuSatuan"><i class="bi bi-clipboard fs-5 me-2"></i>
                                 <span class="nav-label ms-1">Satuan Produk</span>
+                            </a>
+
+                            <!-- Dashboard submenu list -->
+                            
+                            <!-- END : Dashboard submenu list -->
+
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="{{ route('permission-index') }}" class="mininav-toggle nav-link {{ Route::is('permission-index') ? 'active' : ''  }}" id="menuPermission"><i class="bi bi-person-vcard fs-5 me-2"></i>
+                                <span class="nav-label ms-1">Permission</span>
+                            </a>
+
+                            <!-- Dashboard submenu list -->
+                            
+                            <!-- END : Dashboard submenu list -->
+
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="{{ route('role-index') }}" class="mininav-toggle nav-link {{ Route::is('role-index') ? 'active' : ''  }}" id="menuRole"><i class="bi bi-gear fs-5 me-2"></i>
+                                <span class="nav-label ms-1">Role</span>
                             </a>
 
                             <!-- Dashboard submenu list -->

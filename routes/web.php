@@ -14,17 +14,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// Route::group(['middleware' => ['guest']], function() {
+// });
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+// Route::group(['middleware' => ['auth', 'permission']], function () {
+    // Auth::routes();
+Route::group(['middleware' => ['auth']], function () {
     Route::prefix('produk')->group(function () {
         Route::get('/', [App\Http\Controllers\Produk\KategoriController::class, 'index'])->name('kategori-index');
         Route::post('/tambah', [App\Http\Controllers\Produk\KategoriController::class, 'tambah'])->name('kategori-tambah');
         Route::put('/kategori-update/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'update'])->name('kategori-update');
         Route::delete('/kategori-delete/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'destroy'])->name('kategori-delete');
+    });
+    Route::prefix('permission')->group(function () {
+        Route::get('/', [App\Http\Controllers\PermissionController::class, 'index'])->name('permission-index');
+        Route::post('/tambah', [App\Http\Controllers\PermissionController::class, 'tambah'])->name('permission-tambah');
+        Route::put('/permission-update/{id}', [App\Http\Controllers\PermissionController::class, 'update'])->name('permission-update');
+        Route::delete('/permission-delete/{id}', [App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission-delete');
+    });
+    Route::prefix('role')->group(function () {
+        Route::get('/', [App\Http\Controllers\RoleController::class, 'index'])->name('role-index');
+        Route::post('/tambah', [App\Http\Controllers\RoleController::class, 'tambah'])->name('role-tambah');
+        Route::put('/role-update/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role-update');
+        Route::delete('/role-delete/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('role-delete');
+    });
+    Route::get('/', function () {
+        return view('welcome');
     });
     Route::prefix('satuan')->group(function () {
         Route::get('/', [App\Http\Controllers\Produk\SatuanController::class, 'index'])->name('satuan-index');
@@ -40,5 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/form-update/{id}', [App\Http\Controllers\FormController::class, 'update'])->name('form-update');
     Route::delete('/form-delete/{id}', [App\Http\Controllers\FormController::class, 'delete'])->name('form-delete');
     Route::patch('/form-restore/{id}', [App\Http\Controllers\FormController::class, 'restore'])->name('form-restore');
+    // Route::resource('roles', RolesController::class);
+    // Route::resource('permissions', PermissionsController::class);
 });
 
