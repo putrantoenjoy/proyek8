@@ -35,8 +35,8 @@
                                             <div class="col-12 row p-2">
                                                 @foreach ($permissions as $permission)
                                                 <div class="form-check col-6">
-                                                    <input class="form-check-input" type="checkbox" name="permission[]" {{ $permission->name ? 'checked' : '' }}  id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    <input class="form-check-input permission" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission{{ $permission->id }}">
+                                                    <label class="form-check-label" for="permission{{ $permission->id }}">
                                                         {{ $permission->name }}
                                                     </label>
                                                 </div>
@@ -51,7 +51,7 @@
                                 <div class="d-flex justify-content-end p-3">
                                     <div>
                                         <button type="button" onclick="resetForm()" class="btn btn-danger">Reset</button>
-                                        <button type="submit" onclick="submitForm()" class="btn btn-primary">Save changes</button>
+                                        <button type="button" id="simpan" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -64,55 +64,60 @@
 </div>
 <script>
     function resetForm() {
+        
         document.getElementById("role-form").reset();
     }
     function submitForm() {
         
         document.getElementById("role-form").submit();
     }
-    // var checkedValue = null; 
-    // var inputElements = document.getElementsByClassName('form-check-input');
-    // for(var i=0; inputElements[i]; ++i){
-    //     if(inputElements[i].checked){
-    //         checkedValue = inputElements[i].value;
-    //         break;
-    //     }
-    // }
-    var checkedValue = $('.messageCheckbox:checked').val();
-    $("#table").on("click", "td #btn-edit", function (){
-        let data = $(this).data("data")
-        $("#role-form").attr("action", "{{route('role-update',  ':data' )}}".replace(':data', data.id))
-        $("#role").val(data.name)
-        // $("#")
-        // data.forEach(element => {
-        //     console.log(element)
+    let id_permission = "";
+    
+
+    $('#simpan').click(function() {
+        // let data = $(this).data("data")
+        var permission_id = [];
+        $('.permission:checked').each(function() {
+            permission_id.push($(this).val());
+        });
+        // permission.forEach(element => {
+        //     console.log(element.name);
         // });
-        // $("#nama").val(data.name)
-        // var check = document.querySelectorAll(".form-check-input");
-        // for (let i = 0; i < check.length; i++) {
-        //     check[i].disabled = true;
-        // }
-        // var checkedValue = $('.messageCheckbox:checked').val();
+        console.log(permission_id);
+        
+        $.ajax({
+            url: '{{ route('role-update', ['id' => ':id']) }}'.replace(':id', id_permission),
+            type: 'PUT',
+            data: { 
+                role_id: id_permission,
+                permission_id: permission_id,
+                _token: "{{ csrf_token() }}" 
+            },                
+            success: function(response) {
+                console.log(response);
+                location.reload();
+                // Menghandle kesuksesan
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                // Menghandle error
+            }
+        });
+    });
+
+    $("#table").on("click", "td #btn-edit", function (){
+        $(".permission").attr("checked", false);
+        let data = $(this).data("data")
+        id_permission = data.id;
+        // $("#role-form").attr("action", "{{route('role-update',  ':data' )}}".replace(':data', data.id))
+        $("#role").val(data.name)
+        let permission = data.permissions;
+        console.log(permission);
+        
+
+        
+        permission.forEach(element => {
+            $("#permission"+element.id).attr("checked", true);
+        });
     })
-    // $("#role").on("click", "select #role", function (){
-    //     // let data = $(this).data("data")
-    //     // $("#role-form").attr("action", "{{route('role-update',  ':data' )}}".replace(':data', data.id))
-    //     // $("#nama").val(data.name)
-    //     console.log("berhasil");
-    // })
-    // function roleCheck(){
-    //     document.getElementById("role").value = 
-        // var x = document.getElementById("role").value;
-        // console.log(x);
-        // if(x != "Pilih Role"){
-        //     var check = document.querySelectorAll(".form-check-input");
-        //     for (let i = 0; i < check.length; i++) {
-        //         check[i].disabled = false;
-        //     }
-        //     // array.forEach(element => {
-                
-        //     // });
-        //     console.log("ini angka");
-        // }
-    // }
 </script>

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@can('update')    
 <section id="content" class="content">
     <div class="content__header content__boxed overlapping">
         <div class="content__wrap">
@@ -82,7 +83,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Status</th>
+                                    {{-- <th>Status</th> --}}
                                     <th>permission</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -93,7 +94,7 @@
                                     <td>{{ $role->id }}</td>
                                     <td>{{ $role->name }}</td>
                                     {{-- <td>{{ $role->permissions()->get() }}</td> --}}
-                                    <td>{{ 'status' }}</td>
+                                    {{-- <td>{{ 'status' }}</td> --}}
                                     <td class="col-6">
                                         <div class="col-12 row">
                                             @foreach ($role->permissions()->get() as $permission)
@@ -147,5 +148,6 @@
     <!-- END - FOOTER -->
 
 </section>
+@endcan
 
 @endsection
