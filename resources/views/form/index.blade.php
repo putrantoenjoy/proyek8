@@ -83,17 +83,26 @@
                                     <th>No</th>
                                     <th>Nama Depan</th>
                                     <th>Nama Belakang</th>
+                                    <th>Role</th>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- @foreach ($roles as $item)
+                                    {{ $item->name }}
+                                @endforeach --}}
                                 @foreach ($allData as $row => $data)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$data->first_name}}</td>
                                     <td>{{$data->last_name}}</td>
+                                    <td>
+                                        @foreach($data->getRoleNames() as $role)
+                                            {{ $role }}
+                                        @endforeach
+                                    </td>
                                     <td>{{$data->username}}</td>
                                     <td>{{$data->email}}</td>
                                     <td>

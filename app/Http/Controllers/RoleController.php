@@ -16,6 +16,26 @@ class RoleController extends Controller
         $roles = Role::with('permissions')->get();
         return view('role.index', compact('permissions', 'roles'));
     }
+    public function tambah(Request $request)
+    {
+        // $role;
+        // $role->role = $request->role;
+        $role = Role::create(['name' => $request->role ]);
+        
+        
+        for ($i=0; $i < count($request->permission_id); $i++) { 
+
+            $data = [
+                "role_id" => $role->id,
+                "permission_id" => $request->permission_id[$i],
+            ];
+            DB::table('role_has_permissions')->insert($data);
+        }
+        // return back();
+        // $role = $request->role;
+        // dd($request->all());
+        // return response()->json(['status' => 'sukses']);
+    }
     public function update(Request $request, $id)
     {
         // $role;

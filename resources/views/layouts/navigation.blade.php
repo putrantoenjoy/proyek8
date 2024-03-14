@@ -487,6 +487,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
+                        {{-- @role('admin') --}}
                         <li class="nav-item">
 
                             <a href="{{ route('permission-index') }}" class="mininav-toggle nav-link {{ Route::is('permission-index') ? 'active' : ''  }}" id="menuPermission"><i class="bi bi-person-vcard fs-5 me-2"></i>
@@ -509,6 +510,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
+                        {{-- @endrole --}}
                         <!-- END : Link with submenu -->
 
                         <!-- Link with submenu -->

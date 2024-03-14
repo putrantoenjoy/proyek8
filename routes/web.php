@@ -27,18 +27,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/kategori-update/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'update'])->name('kategori-update');
         Route::delete('/kategori-delete/{id}', [App\Http\Controllers\Produk\KategoriController::class, 'destroy'])->name('kategori-delete');
     });
-    Route::prefix('permission')->group(function () {
-        Route::get('/', [App\Http\Controllers\PermissionController::class, 'index'])->name('permission-index');
-        Route::post('/tambah', [App\Http\Controllers\PermissionController::class, 'tambah'])->name('permission-tambah');
-        Route::put('/permission-update/{id}', [App\Http\Controllers\PermissionController::class, 'update'])->name('permission-update');
-        Route::delete('/permission-delete/{id}', [App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission-delete');
-    });
-    Route::prefix('role')->group(function () {
-        Route::get('/', [App\Http\Controllers\RoleController::class, 'index'])->name('role-index');
-        Route::post('/tambah', [App\Http\Controllers\RoleController::class, 'tambah'])->name('role-tambah');
-        Route::put('/role-update/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role-update');
-        Route::delete('/role-delete/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('role-delete');
-    });
+    // Route::group(['middleware' => ['role:user']], function () {
+        Route::prefix('permission')->group(function () {
+            Route::get('/', [App\Http\Controllers\PermissionController::class, 'index'])->name('permission-index');
+            Route::post('/tambah', [App\Http\Controllers\PermissionController::class, 'tambah'])->name('permission-tambah');
+            Route::put('/permission-update/{id}', [App\Http\Controllers\PermissionController::class, 'update'])->name('permission-update');
+            Route::delete('/permission-delete/{id}', [App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission-delete');
+        });
+        Route::prefix('role')->group(function () {
+            Route::get('/', [App\Http\Controllers\RoleController::class, 'index'])->name('role-index');
+            Route::post('/tambah', [App\Http\Controllers\RoleController::class, 'tambah'])->name('role-tambah');
+            Route::put('/role-update/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role-update');
+            Route::delete('/role-delete/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('role-delete');
+        });
+    // });
     Route::get('/', function () {
         return view('welcome');
     });

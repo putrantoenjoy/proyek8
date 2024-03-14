@@ -1,4 +1,4 @@
-<div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,19 +15,11 @@
                                     {{-- <h5 class="card-title">Block styled form</h5> --}}
                 
                                     <!-- Block styled form -->
-                                    <form class="row g-3 justify-content-center"id="role-form" method="post">
+                                    <form class="row g-3 justify-content-center"id="role-form-tambah" method="post">
                                         @csrf
-                                        @method('put')
                                         <div class="col-md-12 p-0">
                                             <label for="_dm-inputFname" class="form-label">Role</label>
-                                            <input type="text" class="form-control" id="role" name="role" disabled onclick="roleCheck()">
-                                            {{-- <select name="role" id="role" class="form-control" onclick="roleCheck()">
-                                                @foreach ($roles as $role)
-                                                <option disabled hidden selected>{{ 'Pilih Role' }}</option>
-                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                                @endforeach
-                                            </select> --}}
-                                            {{-- <input id="nama" type="text" disabled required value="" class="form-control"> --}}
+                                            <input type="text" class="form-control" id="role" name="role" placeholder="Nama Role"required>
                                         </div>
                 
                                         <div class="col-md-12 p-0">
@@ -35,7 +27,7 @@
                                             <div class="col-12 row p-2">
                                                 @foreach ($permissions as $permission)
                                                 <div class="form-check col-6">
-                                                    <input class="form-check-input permission" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission{{ $permission->id }}">
+                                                    <input class="form-check-input permission_tambah" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission{{ $permission->id }}">
                                                     <label class="form-check-label" for="permission{{ $permission->id }}">
                                                         {{ $permission->name }}
                                                     </label>
@@ -51,7 +43,7 @@
                                 <div class="d-flex justify-content-end p-3">
                                     <div>
                                         <button type="button" onclick="resetForm()" class="btn btn-danger">Reset</button>
-                                        <button type="button" id="simpanEdit" class="btn btn-primary">Save changes</button>
+                                        <button type="button" id="simpan" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -65,32 +57,35 @@
 <script>
     function resetForm() {
         
-        document.getElementById("role-form").reset();
+        document.getElementById("role-form-tambah").reset();
     }
     function submitForm() {
         
-        document.getElementById("role-form").submit();
+        document.getElementById("role-form-tambah").submit();
     }
-    let id_permission = "";
+    // let id_permission = "";
     
 
-    $('#simpanEdit').click(function() {
+    $('#simpan').click(function() {
         // let data = $(this).data("data")
-        var permission_id = [];
-        $('.permission:checked').each(function() {
-            permission_id.push($(this).val());
-        });
+        var permission_id_tambah = [];
+        let id_permission = $('.permission_tambah:checked').map(function() {
+            return $(this).val();
+        }).toArray();
+        // $('.permission:checked').each(function() {
+        //     permission_id_tambah.push($(this).val());
+        // });
         // permission.forEach(element => {
         //     console.log(element.name);
         // });
-        console.log(permission_id);
+        console.log(id_permission);
         
         $.ajax({
-            url: '{{ route('role-update', ['id' => ':id']) }}'.replace(':id', id_permission),
-            type: 'PUT',
+            url: '{{ route('role-tambah') }}',
+            type: 'POST',
             data: { 
-                role_id: id_permission,
-                permission_id: permission_id,
+                role: $("#role").val(),
+                permission_id: id_permission,
                 _token: "{{ csrf_token() }}" 
             },                
             success: function(response) {
@@ -105,19 +100,19 @@
         });
     });
 
-    $("#table").on("click", "td #btn-edit", function (){
+    $("#tambah-role").on("click", function (){
         $(".permission").attr("checked", false);
-        let data = $(this).data("data")
-        id_permission = data.id;
+        // let data = $(this).data("data")
+        // id_permission = data.id;
         // $("#role-form").attr("action", "{{route('role-update',  ':data' )}}".replace(':data', data.id))
-        $("#role").val(data.name)
-        let permission = data.permissions;
-        console.log(permission);
+        // $("#role").val(data.name)
+        // let permission = data.permissions;
+        // console.log(permission);
         
 
         
-        permission.forEach(element => {
-            $("#permission"+element.id).attr("checked", true);
-        });
+        // permission.forEach(element => {
+        //     $("#permission"+element.id).attr("checked", true);
+        // });
     })
 </script>

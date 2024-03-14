@@ -9,6 +9,10 @@ use Spatie\Permission\Models\Role;
 class PermissionController extends Controller
 {
     //
+    // public function __construct()
+    // {
+    //     $this->middleware(['role:admin']);
+    // }
     public function index(){
         $permissions = Permission::get();
         $roles = Role::get();

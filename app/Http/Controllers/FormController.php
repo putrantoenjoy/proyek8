@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 use Hash;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class FormController extends Controller
 {
     //
     public function index(Request $request){
+        $roles = Role::get();
         $cari = $request->cari;
-        $data = DB::table('users')->where('deleted_at', null);
+        $data = User::where('deleted_at', null);
         if(!empty ($request->cari)){
             $data->where('first_name', 'like', "%". $cari ."%")->orWhere('last_name', 'like', "%". $cari ."%");
         }
         $allData = $data->paginate(5);
-        return view('form.index', compact('allData', 'cari'));
+        return view('form.index', compact('allData', 'cari', 'roles'));
     }
     public function search(Request $request){
         // $cari = $request->cari;
@@ -67,8 +70,12 @@ class FormController extends Controller
             'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
+            'role' => $request->email,
 
         ];
+        
+        // dd($user);
+
         if(!empty ($request->password)){
             $data["password"] = Hash::make($request->password);
         }
@@ -80,6 +87,12 @@ class FormController extends Controller
         // dd($allData);
         
         $allData->update($data);
+
+        // $user = User::find($id);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $addRole = Role::find($request->role);
+        $allData->assignRole($addRole);
+        $allData->save();
         
         return redirect()->route('form-index')->with('status', 'success update');
     }

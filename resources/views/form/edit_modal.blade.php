@@ -27,6 +27,15 @@
                                             <label for="_dm-inputLname" class="form-label">Nama Belakang</label>
                                             <input id="last_name" type="text" name="last_name" required placeholder="Nama Belakang" class="form-control">
                                         </div>
+                                        <div class="col-md-12">
+                                            <label for="role" class="form-label">Role</label>
+                                            <select name="role" id="role" class="form-control">
+                                                @foreach ($roles as $data)
+                                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input id="role" type="text" name="role" required placeholder="Nama Belakang" class="form-control"> --}}
+                                        </div>
                 
                                         <div class="col-12">
                                             <label for="_dm-inputUname" class="form-label">Username</label>
@@ -83,5 +92,14 @@
         $("#last_name").val(data.last_name)
         $("#username").val(data.username)
         $("#email").val(data.email)
+
+        if(data.roles[0] != null){
+            let x = data.roles[0].id
+            $('select option[value="'+ x +'"]').attr("selected",true);
+            // console.log(data.roles[0].id);
+        }
+        // var x = $("select #role").val(data.roles[0].name)
+        // console.log(data.roles[0].name);
+        // var x = $("select #role").val(data.roles[0].name).filter(":selected").text();
     })
 </script>

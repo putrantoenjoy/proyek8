@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-@can('update')    
 <section id="content" class="content">
     <div class="content__header content__boxed overlapping">
         <div class="content__wrap">
@@ -49,7 +48,7 @@
                         <div class="col-md-6 d-flex gap-1 align-items-center mb-3">
                             
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary hstack gap-2 align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-primary hstack gap-2 align-self-center" id="tambah-role" data-bs-toggle="modal" data-bs-target="#ModalTambah">
                                 <i class="demo-psi-add fs-5"></i>
                                 <span class="vr"></span>
                                 Tambah Role
@@ -133,7 +132,7 @@
 
         </div>
     </div>
-    @include('permission.tambah')
+    @include('role.tambah')
     @include('role.edit_modal')
     <footer class="content__boxed mt-auto">
         <div class="content__wrap py-3 py-md-1 d-flex flex-column flex-md-row align-items-md-center">
@@ -148,6 +147,5 @@
     <!-- END - FOOTER -->
 
 </section>
-@endcan
 
 @endsection
