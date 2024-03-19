@@ -89,7 +89,7 @@
                                 @foreach ($permissions as $permission)
                                 <tr>
                                     <td>{{ $permission->id }}</td>
-                                    <td>{{ $permission->name }}</td>
+                                    <td>{{ $permission->view }}</td>
                                     <td>
                                         <form action="{{ route('permission-delete', $permission->id) }}" method="post">
                                             @csrf

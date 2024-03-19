@@ -100,7 +100,7 @@
                                             <div class="col-6">
                                                 <ul class="list-unstyled">
                                                     <li>
-                                                        {{ $permission->name }}
+                                                        {{ $permission->view }}
                                                     </li>
                                                 </ul>
                                             </div>

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        echo "1: User\n2: Role\nPilih ";
+        echo "1: User\n2: Role\n3: Admin\nPilih ";
         $input = fopen("php://stdin","r");
         $pilih = trim(fgets($input));
         echo "\n";
@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             }else{
                 return;
             }
+        }else if($pilih == 3){
+            $this->call(AdminSeeder::class);
         }else{
             echo "pilih yang sesuai!\n";
             $this->call(DatabaseSeeder::class);

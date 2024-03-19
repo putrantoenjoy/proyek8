@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -17,6 +18,9 @@ class RoleSeeder extends Seeder
     public function run()
     {
         //
+        // $user = User::where('first_name', 'admin')->first();
+        // echo $user;
+        // return $user;
         $role = Role::first();
         if($role == null){
             $data = [
@@ -46,13 +50,18 @@ class RoleSeeder extends Seeder
                 "form-delete",
                 "form-restore"
             ];
+            
             for($i = 0; $i < count($data) ; $i++){
                 $role = Role::create(['name' => $data[$i]]);
             }
             for($i = 0; $i < count($data_permission) ; $i++){
-                $permission = Permission::create(['name' => $data_permission[$i]]);
+                $data_permission_view = Str::replace("-", ' ',$data_permission[$i]);
+                $permission = Permission::create([
+                    'name' => $data_permission[$i],
+                    'view'=> $data_permission_view
+                ]);
                 $role = Role::findById(1);
-                $user = User::find(1);
+                $user = User::where('first_name', 'admin')->first();
                 $user->assignRole('admin');
                 $role->givePermissionTo([$permission]);
                 
