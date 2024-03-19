@@ -402,9 +402,9 @@
                             <!-- User name and position -->
                             <button class="d-block btn shadow-none p-2" data-bs-toggle="collapse" data-bs-target="#usernav" aria-expanded="false" aria-controls="usernav">
                                 <span class="dropdown-toggle d-flex justify-content-center align-items-center">
-                                    <h6 class="mb-0 me-3">Aaron Chavez</h6>
+                                    <h6 class="mb-0 me-3">{{ Auth::user()->first_name }}</h6>
                                 </span>
-                                <small class="text-muted">Administrator</small>
+                                <small class="text-muted">{{ Auth::user()->username }}</small>
                             </button>
 
                             <!-- Collapsed user menu -->
@@ -454,6 +454,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
+                        {{-- @role('admin | administrasi') --}}
                         <li class="nav-item">
 
                             <a href="{{route('form-index')}}" class="mininav-toggle nav-link {{ Route::is('form-index') ? 'active' : ''  }}" id="menuUser"><i class="bi bi-person fs-5 me-2"></i>
@@ -465,6 +466,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
+                        {{-- @endhasrole --}}
                         <li class="nav-item">
 
                             <a href="{{ route('kategori-index') }}" class="mininav-toggle nav-link {{ Route::is('kategori-index') ? 'active' : ''  }}" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>
@@ -487,7 +489,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
-                        {{-- @role('admin') --}}
+                        @role('admin')
                         <li class="nav-item">
 
                             <a href="{{ route('permission-index') }}" class="mininav-toggle nav-link {{ Route::is('permission-index') ? 'active' : ''  }}" id="menuPermission"><i class="bi bi-person-vcard fs-5 me-2"></i>
@@ -510,7 +512,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
-                        {{-- @endrole --}}
+                        @endrole
                         <!-- END : Link with submenu -->
 
                         <!-- Link with submenu -->

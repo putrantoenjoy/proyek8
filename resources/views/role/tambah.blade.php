@@ -27,8 +27,8 @@
                                             <div class="col-12 row p-2">
                                                 @foreach ($permissions as $permission)
                                                 <div class="form-check col-6">
-                                                    <input class="form-check-input permission_tambah" type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission{{ $permission->id }}">
-                                                    <label class="form-check-label" for="permission{{ $permission->id }}">
+                                                    <input class="form-check-input permission_tambah" type="checkbox" name="permission-tambah[]" value="{{ $permission->id }}" id="permission-tambah{{ $permission->id }}">
+                                                    <label class="form-check-label" for="permission-tambah{{ $permission->id }}">
                                                         {{ $permission->name }}
                                                     </label>
                                                 </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end p-3">
                                     <div>
-                                        <button type="button" onclick="resetForm()" class="btn btn-danger">Reset</button>
+                                        <button type="button" onclick="resetFormTambah()" class="btn btn-danger">Reset</button>
                                         <button type="button" id="simpan" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
@@ -55,11 +55,11 @@
     </div>
 </div>
 <script>
-    function resetForm() {
+    function resetFormTambah() {
         
         document.getElementById("role-form-tambah").reset();
     }
-    function submitForm() {
+    function submitFormTambah() {
         
         document.getElementById("role-form-tambah").submit();
     }
@@ -101,7 +101,7 @@
     });
 
     $("#tambah-role").on("click", function (){
-        $(".permission").attr("checked", false);
+        $(".permission_tambah").attr("checked", false);
         // let data = $(this).data("data")
         // id_permission = data.id;
         // $("#role-form").attr("action", "{{route('role-update',  ':data' )}}".replace(':data', data.id))

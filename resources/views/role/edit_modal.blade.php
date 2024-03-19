@@ -15,12 +15,12 @@
                                     {{-- <h5 class="card-title">Block styled form</h5> --}}
                 
                                     <!-- Block styled form -->
-                                    <form class="row g-3 justify-content-center"id="role-form" method="post">
+                                    <form class="row g-3 justify-content-center"id="role-form-edit" method="post">
                                         @csrf
                                         @method('put')
                                         <div class="col-md-12 p-0">
                                             <label for="_dm-inputFname" class="form-label">Role</label>
-                                            <input type="text" class="form-control" id="role" name="role" disabled onclick="roleCheck()">
+                                            <input type="text" class="form-control" id="role-edit" name="role" disabled onclick="roleCheck()">
                                             {{-- <select name="role" id="role" class="form-control" onclick="roleCheck()">
                                                 @foreach ($roles as $role)
                                                 <option disabled hidden selected>{{ 'Pilih Role' }}</option>
@@ -65,11 +65,11 @@
 <script>
     function resetForm() {
         
-        document.getElementById("role-form").reset();
+        document.getElementById("role-form-edit").reset();
     }
     function submitForm() {
         
-        document.getElementById("role-form").submit();
+        document.getElementById("role-form-edit").submit();
     }
     let id_permission = "";
     
@@ -109,15 +109,17 @@
         $(".permission").attr("checked", false);
         let data = $(this).data("data")
         id_permission = data.id;
-        // $("#role-form").attr("action", "{{route('role-update',  ':data' )}}".replace(':data', data.id))
-        $("#role").val(data.name)
-        let permission = data.permissions;
-        console.log(permission);
+        $("#role-edit").val(data.name)
+        let permission = data.permissions
         
+        // $("#permission1").prop("checked", true);
 
-        
+        // permission.forEach(permissions => {
+        //     console.log(permissions.id)
+        //     $("#permission" + permissions.id).prop("checked", true);
+        // });
         permission.forEach(element => {
-            $("#permission"+element.id).attr("checked", true);
+            $("#permission"+element.id).attr('checked', true);
         });
     })
 </script>
