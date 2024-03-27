@@ -8,6 +8,7 @@ use PDF;
 use Auth;
 use Hash;
 use App\Models\User;
+use PHPUnit\Framework\Constraint\IsEmpty;
 use Spatie\Permission\Models\Role;
 
 class FormController extends Controller
@@ -62,8 +63,15 @@ class FormController extends Controller
         //     'last_name' => 'required',
         //     'email' =>['required', 'string', 'email', 'max:255'],
         // ]);
-        
-
+        // $today = date("Ymds");
+        // dd($today);
+        $filename = "";
+        if(!$request->file('img') == null){
+            $file = $request->file('img');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            // $file = $today;
+        }
         $allData = User::findOrFail($id);
         
         $data = [
@@ -71,29 +79,26 @@ class FormController extends Controller
             'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
-            'role' => $request->role,
-
+            'image' => $filename,
+            'lokasi' => "tes",
         ];
-        
-        // dd($user);
 
-        if(!empty ($request->password)){
+        if(!empty($request->password)){
             $data["password"] = Hash::make($request->password);
         }
-        $allData->first_name = $request->first_name;
-        $allData->last_name = $request->last_name;
-        $allData->username = $request->username;
-        $allData->email = $request->email;
+        // $allData->first_name = $request->first_name;
+        // $allData->last_name = $request->last_name;
+        // $allData->username = $request->username;
+        // $allData->email = $request->email;
         $allData->password = Hash::make($request->password);
-        // dd($allData);
         
+        
+        // dd($data);
         $allData->update($data);
-
-        // $user = User::find($id);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $addRole = Role::find($request->role);
         $allData->assignRole($addRole);
-        $allData->save();
+        $allData->update();
         
         return redirect()->route('form-index')->with('status', 'success update');
     }
@@ -122,6 +127,6 @@ class FormController extends Controller
         // dd();
 
         $pdf = PDF::loadview('form.pdf', compact('allData'));
-    	return $pdf->download('laporan_user.pdf');
+    	return $pdf->stream();
     }
 }

@@ -15,18 +15,16 @@
                                     {{-- <h5 class="card-title">Block styled form</h5> --}}
                 
                                     <!-- Block styled form -->
-                                    <form class="row g-3 justify-content-center"id="edit-form" method="post">
+                                    <form class="row g-3 justify-content-center"id="edit-form" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('patch')
                                         <div class="col-md-12 justify-content-center d-flex">
                                             <div class="row col-md-6">
-                                                <img type="image/*" src="{{url('assets/img/profile-photos/1.png')}}" alt="foto" id="foto" class="rounded-circle" style="max-width: none">
+                                                <img type="image/*" src="{{url('assets/img/profile-photos/1.png')}}" alt="foto" id="foto" class="rounded-circle p-0 border" style="width: 100%; height: 200px; object-fit: cover">
                                                 {{-- <button type="button" class="btn btn-primary my-3" id="foto">Ubah Foto</button> --}}
                                                 <div id="input-img" class="text-break"></div>
                                                 <label for="formFile" class="btn btn-primary my-3">Ubah Foto</label>
-                                                <input class="d-none" type="file" id="formFile">
-                                                {{-- <label for="tb-file-upload" class="btn btn-primary my-3">Upload Image</label>
-                                                <input type="file" id="tb-file-upload" class="d-none" accept="image/*" onchange="fileUpload(event);" /> --}}
+                                                <input class="d-none" type="file" name="img" id="formFile">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -98,15 +96,18 @@
     //         imagePreviewElement.style.display = "block";
     //     }
     // };
+    let file = [];
     formFile.onchange = evt => {
         const [file] = formFile.files
         if (file) {
             foto.src = URL.createObjectURL(file)
             console.log(file);
-            $("#input-img").text(file.name)
+            // $("#input-img").text(file.name)
+            // $("#input-img").val(file.name)
         }
     }
     function resetForm() {
+        console.log(file);
         document.getElementById("edit-form").reset();
     }
     function submitForm() {
@@ -121,6 +122,7 @@
         $("#last_name").val(data.last_name)
         $("#username").val(data.username)
         $("#email").val(data.email)
+        // $("#formFile").val(file)
 
         if(data.roles[0] != null){
             let x = data.roles[0].id
