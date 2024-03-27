@@ -54,13 +54,13 @@ class FormController extends Controller
         return view('form.edit', compact('allData'));
     }
     public function update(Request $request, $id){
-        // dd($id);
-        $request->validate([
-            'username' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' =>['required', 'string', 'email', 'max:255'],
-        ]);
+        // dd($request->all());
+        // $request->validate([
+        //     'username' => 'required',
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' =>['required', 'string', 'email', 'max:255'],
+        // ]);
         
 
         $allData = User::findOrFail($id);
@@ -70,7 +70,7 @@ class FormController extends Controller
             'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
-            'role' => $request->email,
+            'role' => $request->role,
 
         ];
         

@@ -454,7 +454,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
-                        {{-- @role('admin | administrasi') --}}
+                        @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('administrasi'))
                         <li class="nav-item">
 
                             <a href="{{route('form-index')}}" class="mininav-toggle nav-link {{ Route::is('form-index') ? 'active' : ''  }}" id="menuUser"><i class="bi bi-person fs-5 me-2"></i>
@@ -466,7 +466,7 @@
                             <!-- END : Dashboard submenu list -->
 
                         </li>
-                        {{-- @endhasrole --}}
+                        @endif
                         <li class="nav-item">
 
                             <a href="{{ route('kategori-index') }}" class="mininav-toggle nav-link {{ Route::is('kategori-index') ? 'active' : ''  }}" id="menuKategori"><i class="bi bi-cart fs-5 me-2"></i>

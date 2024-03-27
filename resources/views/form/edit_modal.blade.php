@@ -18,6 +18,17 @@
                                     <form class="row g-3 justify-content-center"id="edit-form" method="post">
                                         @csrf
                                         @method('patch')
+                                        <div class="col-md-12 justify-content-center d-flex">
+                                            <div class="row col-md-6">
+                                                <img type="image/*" src="{{url('assets/img/profile-photos/1.png')}}" alt="foto" id="foto" class="rounded-circle" style="max-width: none">
+                                                {{-- <button type="button" class="btn btn-primary my-3" id="foto">Ubah Foto</button> --}}
+                                                <div id="input-img" class="text-break"></div>
+                                                <label for="formFile" class="btn btn-primary my-3">Ubah Foto</label>
+                                                <input class="d-none" type="file" id="formFile">
+                                                {{-- <label for="tb-file-upload" class="btn btn-primary my-3">Upload Image</label>
+                                                <input type="file" id="tb-file-upload" class="d-none" accept="image/*" onchange="fileUpload(event);" /> --}}
+                                            </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <label for="_dm-inputFname" class="form-label">Nama Depan</label>
                                             <input id="first_name" type="text" placeholder="Nama Depan" required name="first_name" class="form-control">
@@ -77,6 +88,24 @@
     </div>
 </div>
 <script>
+    // const fileUpload = (event) => {
+    //     const files = event.target.files;
+    //     const filesLength = files.length;
+    //     if (filesLength > 0) {
+    //         const imageSrc = URL.createObjectURL(files[0]);
+    //         const imagePreviewElement = document.querySelector("#tb-image");
+    //         imagePreviewElement.src = imageSrc;
+    //         imagePreviewElement.style.display = "block";
+    //     }
+    // };
+    formFile.onchange = evt => {
+        const [file] = formFile.files
+        if (file) {
+            foto.src = URL.createObjectURL(file)
+            console.log(file);
+            $("#input-img").text(file.name)
+        }
+    }
     function resetForm() {
         document.getElementById("edit-form").reset();
     }
