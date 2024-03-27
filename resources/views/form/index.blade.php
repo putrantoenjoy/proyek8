@@ -53,6 +53,11 @@
                                 <span class="vr"></span>
                                 Tambah User
                             </button>
+                            <a href="{{ route('form-export') }}" class="btn btn-secondary hstack gap-2 align-self-center">
+                                {{-- <i class="demo-psi-add fs-5"></i> --}}
+                                <span class="vr"></span>
+                                Export
+                            </a>
                             
                             
                         </div>

@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/form', [App\Http\Controllers\FormController::class, 'index'])->name('form-index');
+    Route::get('/form/export', [App\Http\Controllers\FormController::class, 'export'])->name('form-export');
     Route::get('/form/cari', [App\Http\Controllers\FormController::class, 'search'])->name('form-search');
     Route::post('/form-tambah', [App\Http\Controllers\FormController::class, 'tambah'])->name('form-tambah');
     Route::get('/form-edit/{id}', [App\Http\Controllers\FormController::class, 'edit'])->name('form-edit');

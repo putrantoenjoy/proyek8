@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use PDF;
 use Auth;
 use Hash;
 use App\Models\User;
@@ -109,5 +110,18 @@ class FormController extends Controller
         dd($allData);
         
         return redirect()->route('form-index');
+    }
+    public function export(Request $request){
+        $roles = Role::get();
+        $cari = $request->cari;
+        $data = User::where('deleted_at', null);
+        if(!empty ($request->cari)){
+            $data->where('first_name', 'like', "%". $cari ."%")->orWhere('last_name', 'like', "%". $cari ."%");
+        }
+        $allData = $data->paginate(5);
+        // dd();
+
+        $pdf = PDF::loadview('form.pdf', compact('allData'));
+    	return $pdf->download('laporan_user.pdf');
     }
 }
