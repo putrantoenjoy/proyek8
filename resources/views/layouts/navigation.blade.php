@@ -303,7 +303,7 @@
                             <!-- User dropdown header -->
                             <div class="d-flex align-items-center border-bottom px-3 py-2">
                                 <div class="flex-shrink-0">
-                                    <img class="img-sm rounded-circle" src="{{url('assets/img/profile-photos/1.png')}}" alt="Profile Picture" loading="lazy">
+                                    <img class="img-sm rounded-circle" src="{{ url('assets/img/foto/profil/' . Auth::user()->image)}}" alt="Profile Picture" loading="lazy">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="mb-0">Aaron Chavez</h5>
@@ -393,7 +393,9 @@
 
                     <!-- Profile picture  -->
                     <div class="mininav-toggle text-center py-2">
-                        <img class="mainnav__avatar img-md rounded-circle border" src="{{url('assets/img/profile-photos/1.png')}}" alt="Profile Picture">
+                        <img class="mainnav__avatar img-md rounded-circle border" 
+                        src="{{ (Auth::user()->image == null) ? url('assets/img/profile-photos/1.png') : url('assets/img/foto/profil/' . Auth::user()->image) }}"
+                        alt="Profile Picture">
                     </div>
 
                     <div class="mininav-content collapse d-mn-max">

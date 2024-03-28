@@ -7,6 +7,7 @@ use DB;
 use PDF;
 use Auth;
 use Hash;
+use File;
 use App\Models\User;
 use PHPUnit\Framework\Constraint\IsEmpty;
 use Spatie\Permission\Models\Role;
@@ -65,11 +66,20 @@ class FormController extends Controller
         // ]);
         // $today = date("Ymds");
         // dd($today);
+
+        if(!Auth::user()->image == null){
+            $allData = User::findOrFail($id);
+            $file = public_path('assets/img/foto/profil/' . $allData->image);
+            File::delete($file);
+        }
+
         $filename = "";
+        $filelokasi = "";
         if(!$request->file('img') == null){
             $file = $request->file('img');
             $extenstion = $file->getClientOriginalExtension();
             $filename = time().'.'.$extenstion;
+            $filelokasi = $file->move(base_path('public\assets\img\foto\profil'), $filename);
             // $file = $today;
         }
         $allData = User::findOrFail($id);
@@ -80,17 +90,19 @@ class FormController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'image' => $filename,
-            'lokasi' => "tes",
+            'lokasi' => $filelokasi,
         ];
 
-        if(!empty($request->password)){
-            $data["password"] = Hash::make($request->password);
+        if(empty($request->password)){
+            $data["password"] = $allData->password;
+            // dd("tes");
+        }else{
+            $allData->password = Hash::make($request->password);
         }
         // $allData->first_name = $request->first_name;
         // $allData->last_name = $request->last_name;
         // $allData->username = $request->username;
         // $allData->email = $request->email;
-        $allData->password = Hash::make($request->password);
         
         
         // dd($data);
